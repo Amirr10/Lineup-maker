@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 550;
+}
+
+.right-list {
+    width: 20%;
+    height: 100%;
+    border-radius: 1px;
+    text-align: center;
+    color: white;
+    background-color: #114b5f;
+}
+
+.ul-list {
+    margin-top: 5%;
+}
+
+li {
+    margin-top: 3%;
+    color: #ffffff;
+
+}
+
+.wrapper {
+    width: 80%;
+    min-height: 100%;
+    background-image: url('./img/pitch8.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid black;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    font-family: 'Balsamiq Sans', cursive;
+    color: rgb(25, 25, 95);
+}
+
+.input-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 30%);
+    grid-row-gap: 7px;
+    justify-content: center;
+    height: 15%;
+    margin-top: 50px;
+}
+
+.shuffle-btn{
+    position: absolute;
+    bottom: 30%;
+    display: flex;
+    justify-content: center;
+    width: 78%;
+    margin-top: 30px;
+}
+
+.player-btn {
+        width: 70px;
+        height: 5vh;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background: #1694be;
+        transition: 0.2s ease-in;
+        margin-right: 50px;   
+}
+
+.player-btn:hover {
+    background: #53d118;
+    cursor: pointer;
+}
+
+.btn {
+    width: 20%;
+    height: 7vh;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 19px;
+    background: linear-gradient(#0e99a3, hsla(221, 88%, 55%, 0.808)) ;
+    transition: 0.2s ease-in;
+}
+
+.btn:hover {
+    transform: scale(1.1,1.1);
+    transform: translateX(2px) translateY(-2px);
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+.level {
+    display: inline-block;
+    text-align: center;
+    height: 6vh;
+    width: 30px;
+    font-size: 25px;
+    color: white;
+}
+
+input {
+    height: 5vh;
+    border-radius: 4px;
+    border: 0.3px solid black;
+    text-decoration: none;
+}
+
+.li-item {
+   display: inline-block;
+   margin-top: 12px;
+   width: 40%;
+}
+
+.li-item:hover {
+  cursor: pointer;
+}
+
+
+.teams {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 20px;
+    font-family: 'Balsamiq Sans', cursive;
+    font-weight: 700;
+    font-size: 45px;
+    color: #001524;
+    /* border: 1px solid green; */
+}
+
+.teams:nth-child(n){
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(26, 20, 20);
+}
+
+.player-row {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    margin-top: 15px;
+    user-select: all;
+}
+
+.picked {
+    position: absolute;
+    bottom: 0;
+    height: 8vh;
+    width: 79.6%;
+    background-color: thistle;
+}
+
+.copy-wrap {
+    position: absolute;
+    width: 100%;
+    bottom: 4px;
+    right: 0;
+}
+
+.copy {
+    position: relative;
+    left: 58%;
+    right: 0;
+    width: 50px;
+    visibility: hidden;
+}
+
+
+.footer {
+    width: 100%;
+    height: 10vh;
+    background-color: #14213d;
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width: 425px) {
+
+    html, body {
+        width: 100%;
+    }
+
+    .right-list {
+        width: 35%;
+        height: 100%;
+        text-align: center;
+        color: white;
+        background-color: #114b5f;
+    }
+
+    .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 20%;
+        font-family: 'Balsamiq Sans', cursive;
+        color: rgb(25, 25, 95);
+    }
+
+    .input-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        height: 0%;
+        width: 100%;
+        margin-top: 10px;
+        /* border: 1px solid black; */
+    }
+
+    .level {
+        display: inline-block;
+        /* text-align: center; */
+        height: 4vh;
+        width: 30px;
+        font-size: 20px;
+        color: white;
+        /* color: rgb(1, 1, 61); */
+    }
+
+    input {
+        width: 50%;
+        height: 3vh;
+        border-radius: 4px;
+        border: 0.3px solid black;
+        text-decoration: none;
+    }
+
+    
+
+    .player-btn {
+        width: 50px;
+        height: 3vh;
+        margin: 0;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background: #55a630;
+        transition: 0.2s ease-in;
+        /* margin-right: 50px;    */
+    }
+
+    .btn {
+        width: 25%;
+        height: 7vh;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 19px;
+        /* background: #55a630; */
+        background: linear-gradient(#0e99a3, hsla(221, 88%, 55%, 0.808)) ;
+        transition: 0.2s ease-in;
+    }
+
+    .shuffle-btn{
+        display: flex;
+        justify-content: center;
+        width: 70%;
+    }
+
+    .sub-input {
+        width: 100%;
+    }
+
+    .ul-list {
+        margin-top: 16px;
+        font-size: 13px;
+    }
+
+    .li-item {
+        margin-top: 13px;
+        font-size: 10px;
+    }
+
+    .player-row {
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        margin-top: 15px;
+    }
+
+    .class-h1 {
+        font-size: 20px;
+    }
+
+    .teams:nth-child(n){
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+  }
