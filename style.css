@@ -24,6 +24,7 @@
 }
 
 .ul-list {
+    position: relative;
     margin-top: 5%;
 }
 
@@ -106,6 +107,38 @@ li {
     border: 1px solid white;
 }
 
+.edit {
+        width: 70px;
+        height: 5vh;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background: #1694be;
+        transition: 0.2s ease-in;
+        outline: none;
+        /* margin-right: 50px;    */
+}
+
+
+.edit:hover {
+    transform: scale(1.1,1.1);
+}
+
+.del-btn {
+    width: 30px;
+    border: none;
+    border-radius: 3px;
+    /* margin-left: 10px; */
+    background-color: red;
+    color: white;
+    transition: 0.2s ease-in;
+    visibility: hidden;
+}
+
+.del-btn:hover {
+    transform: translateX(2px) translateY(-2px);
+}
+
 .level {
     display: inline-block;
     text-align: center;
@@ -123,13 +156,32 @@ input {
 }
 
 .li-item {
+   position: relative;
    display: inline-block;
    margin-top: 12px;
    width: 40%;
 }
 
 .li-item:hover {
+    color: greenyellow;
   cursor: pointer;
+}
+
+.box {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50px;
+
+    width: 100px;
+    height: 100px;
+    background-color:  #bdd4e7;
+    background-image: linear-gradient(315deg, #bdd4e7 0%, #8693ab 74%);
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    z-index: 99;
 }
 
 
