@@ -15,16 +15,16 @@ mongoose.connect(process.env.MONGOOSE_URL, { useNewUrlParser: true })
         .then(() => console.log("Mongoose"));
 
 
-
+//return list of players from db
 app.get('/', (req, res) => {
     
     let p = Player.find( (err, doc) => {
-        console.log(doc)
         res.json(doc)
     })
 })
 
 
+//insert player to db
 app.post('/post', (req, res) => {
     console.log(req.body, "From post")
     let newPlayer = new Player(req.body)

@@ -15,6 +15,22 @@ let pickedPlayers = [
 ]
 
 
+//return player full name
+function getPlayerNameByName(arr){
+    let name = arr
+    let blank = name[1].trim()    
+
+    if(arr[1] === "X" || arr[1] === "" || blank === "") {
+         name = arr[0]
+    } else {
+         name = arr[0] + ' ' + arr[1]
+    }
+
+    let obj = dbDummyArray.filter(el => el.name === name)
+    return obj[0].name
+}
+
+
 function getPlayerLevelByName(name){
     let obj = dbDummyArray.filter(el => el.name === name)
     return obj[0].level
@@ -24,7 +40,6 @@ function getPlayerObjectByName(name){
     let obj = dbDummyArray.filter(el => el.name === name)
     return obj[0]
 }
-
 
 
 //load list on loading
@@ -44,6 +59,7 @@ function displayPlayerList(){
             console.log(data)
 
             dbDummyArray.forEach((obj) => {
+
                 let li = document.createElement('li')
                 li.className = 'li-item'
                 li.setAttribute('flag', 'false')
@@ -108,6 +124,7 @@ playerBtn.forEach(element => {
     })
 });
 
+
 //send post request with name and level to db, and save user in db
 function addPlayerToDB(value, level){
 
@@ -121,8 +138,8 @@ function addPlayerToDB(value, level){
             })
 }
 
+//remove player from DB by name
 function removePlayerFromDb(name){
-    console.log(name)
 
     fetch('http://localhost:5000/delete', {
         method: 'POST',
@@ -134,8 +151,10 @@ function removePlayerFromDb(name){
     })
 }
 
+
 //display delete buttons and hide them
 edit.addEventListener('click', () => {
+
     if(!editList){
         unMarkPlayerList()
         editPlayers()
@@ -144,9 +163,10 @@ edit.addEventListener('click', () => {
         hideDeletePlayers()
         editList = 0
     }
-    
 })
 
+
+//edit function that let you delete players
 function editPlayers(){
     //get list element of del-btn class
     let delBtn = ul.querySelectorAll('.del-btn')
@@ -169,15 +189,14 @@ function editPlayers(){
 
 //when user click Edit List the second time, hide red delete btn
 function hideDeletePlayers(){
+
     //get list element of del-btn class
     let delBtn = ul.querySelectorAll('.del-btn')
 
     // loop thorugh list of names and display del-btn
     delBtn.forEach(btn => {
         btn.innerHTML = ''
-        // btn.style.visibility = 'hidden'
     })    
-
 
     let li = document.querySelectorAll('.li-item')
 
@@ -202,31 +221,21 @@ function unMarkPlayerList(){
       list.splice(0, list.length)
     })
 
-    console.log(pickedPlayers, "picked list!")
 
     let liItem = ul.querySelectorAll('.li-item')
     liItem.forEach(item => {
-        // console.log(item.lastChild.style.visibility, "first")
         let itemName = item.textContent
-        let name = itemName.split(' ')
+        
+        let nameArr = itemName.split(' ')
+        let name = getPlayerNameByName(nameArr)
 
         item.style.color = "white"
-        item.textContent = `${name[0]}`
+        item.textContent = `${name}`
         item.setAttribute('flag', "false")
-        item.innerHTML = `${name[0]} <button class=del-btn>X</button>`
-
+        item.innerHTML = `${name} <button class=del-btn>X</button>`
         item.lastChild.style.visibility = 'visible'  
     })
-
 }
-
-
-//hide delete buttons when clicking next to the names
-rightList.addEventListener('click', (e) => {
-    if(e.target.className !== 'edit' && e.target.className !== 'del-btn' && editList){
-        hideDeletePlayers()
-    }
-})
 
 
 //showing player rank when hovering on a player in player list
@@ -234,33 +243,27 @@ function displayLevel(e){
     let newName
     let li = e.currentTarget
     let name = li.textContent.split(' ')
-    console.log(name)
-    if(name[1] === 'X'){
-         newName = name[0] 
-        console.log(newName, "AAAS")
-    } else {
-         newName = name[0] + ' ' + name[1]
-         console.log(newName)
-    }
+
+    newName = getPlayerNameByName(name)
     let level = getPlayerLevelByName(newName)
+
 
     let btn1 = li.querySelector('.del-btn')
     let div = document.createElement('div')
     div.className = "box"
-    div.innerHTML = `Name - ${newName}
-                     <br> Level - ${level}`
+    div.innerHTML = `<p>Name - ${newName}
+                     <br> Level - ${level}</p>`
 
-    btn1.append(div)
+    li.append(div)
     div.style.visibility = 'visible'
 }
 
-
+//remove display box when mouse leave player name
 function unDisplayLevel(e){
     let li = e.currentTarget
-    let btn1 = li.querySelector('.del-btn')
-    let div = btn1.querySelector('.box')
-    btn1.removeChild(div)
-
+    let div = li.querySelector('.box')
+    li.removeChild(div)
+    // btn1.removeChild(div)
 }
 
 
@@ -271,7 +274,6 @@ function shufflePlayers(){
     let totalPlayers = checkSumPlayers()
     if(totalPlayers > 21){
         alert(`${totalPlayers} players, Too many !`)
-        return
     }
 
     //shuffle each level of players
@@ -295,6 +297,7 @@ function shufflePlayers(){
         console.log("Shuffle function")
     }
 
+    //check if its a computer or mobile screen
     if(window.screen.width > 425){
         shuffleBtnWrap.style.position = "absolute"
         shuffleBtnWrap.style.width = "79%"
@@ -316,7 +319,6 @@ function checkSumPlayers(){
     pickedPlayers.map((array, arrayNum) => {
        sum += array.length
     })
-    console.log(sum, "number of players")
     return sum
 }
 
@@ -324,6 +326,7 @@ function checkSumPlayers(){
 //random between 3 numbers
 shuffleBtn.addEventListener('click', shuffle)
 
+//display teams in order and call shufflePlayers func
 function shuffle(){
     if(flag > 0){
         let teams = document.querySelector('.teams').childNodes
@@ -349,39 +352,48 @@ function displayAddedPlayer(obj) {
         pickPlayer(e)
     })
 
-    li.innerHTML = `${obj.name}`
-    ul.appendChild(li)
-    
+    li.innerHTML = `${obj.name} &nbsp;`
+    ul.appendChild(li)   
 }
 
 
+//mark player that was picked and and insert to pickedPlayer array 
+//or delete from array
 function pickPlayer(e){
 
     let listLi = e.currentTarget
-    console.log(listLi)
+    console.log(listLi.firstChild.innerHTML)
     
     let itemName = listLi.textContent
-    let name = itemName.split(' ')
-    // console.log(name)
-    let fullObj = dbDummyArray.filter(el => el.name === name[0])
+    let regex = /(?!XName)\S+/gi
+    let cutReg = itemName.match(regex)
+    let name
 
+    if (cutReg.length > 1) {
+        console.log(cutReg.length)
+        if (cutReg[1] === '-' || cutReg[1] === 'Name' || cutReg[1] === "✓" || cutReg[1] === "✓Name") {
+            name = cutReg[0]
+        } else {
+            name = cutReg[0] + ' ' + cutReg[1]
+        }
+    } else {
+        name = cutReg[0]
+    }
+   
+    let fullObj = dbDummyArray.filter(el => el.name === name)
 
     //check if name has more then one name
-    if(name[1] !== 'X'){
-        name = `${name[0]} ${name[1]}`
-    } else {
-        name = `${name[0]}`
-    }
+    let newName = fullObj[0].name
     
     if (listLi.getAttribute('flag') === "false") {
         listLi.style.color = "green"
-        listLi.innerHTML = `${name} &nbsp; &#10003;`
+        listLi.innerHTML = `<p>${newName} &nbsp; &#10003;</p>`
         listLi.setAttribute('flag', "true") 
-        pushPlayerToArrByLevel(name.toLowerCase(), fullObj[0].level)
+        pushPlayerToArrByLevel(newName, fullObj[0].level)
     } else {
         listLi.style.color = "white"
-        listLi.textContent = `${name.toUpperCase()}`
-        popPlayerFromList(name.toLowerCase())
+        listLi.innerHTML = `<p>${newName} &nbsp;</p>`
+        popPlayerFromList(newName)
         listLi.setAttribute('flag', "false")
     }
 
@@ -391,10 +403,6 @@ function pickPlayer(e){
 //when user pick a player,
 //the player object is being pushed to array by is level
 function pushPlayerToArrByLevel(name, level){
-
-        console.log(dbDummyArray)
-        // let fullObj = dbDummyArray.filter(el => el.name === name)        
-        // let level = fullObj[0].level
         
         if(level){
             if (level === 'A') {
@@ -426,26 +434,26 @@ function popPlayerFromList(name){
     let cleanName = name.split(" ")
 
     //get the player level from playerObj
-    let fullObj = dbDummyArray.filter(el => el.name === cleanName[0])
+    let fullObj = dbDummyArray.filter(el => el.name === name)
     let level = fullObj[0].level
 
     //filter the array with the level of the player from pickedPlayers array
     if(level){
         if (level === 'A') {
-            pickedPlayers[0] = pickedPlayers[0].filter(player => player !== cleanName[0])
+            pickedPlayers[0] = pickedPlayers[0].filter(player => player !== name)
             console.log(pickedPlayers,"Player Popped")
         }
         if (level === 'B') {
-            pickedPlayers[1] = pickedPlayers[1].filter(player => player !== cleanName[0])
+            pickedPlayers[1] = pickedPlayers[1].filter(player => player !== name)
             console.log(pickedPlayers,"Player Popped")
 
         }
         if (level === 'C') {
-            pickedPlayers[2] = pickedPlayers[2].filter(player => player !== cleanName[0])
+            pickedPlayers[2] = pickedPlayers[2].filter(player => player !== name)
             console.log(pickedPlayers,"Player Popped")
         }
         if (level === 'D') {
-            pickedPlayers[3] = pickedPlayers[3].filter(player => player !== cleanName[0])
+            pickedPlayers[3] = pickedPlayers[3].filter(player => player !== name)
             console.log(pickedPlayers,"Player Popped")
         }
     }
