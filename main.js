@@ -14,6 +14,7 @@ let pickedPlayers = [
     [], [], [], [] //Level A, B, C, D
 ]
 
+//kkkk
 
 //return player full name
 function getPlayerNameByName(arr){
