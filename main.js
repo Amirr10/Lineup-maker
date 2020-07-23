@@ -8,13 +8,13 @@ let edit = document.querySelector('.edit')
 let copyBtn = document.querySelector('.copy')
 let editList = 0
 let flag = 0
+let unMarkFlag = 0
 
 let dbDummyArray
 let pickedPlayers = [
     [], [], [], [] //Level A, B, C, D
 ]
 
-//kkkk
 
 //return player full name
 function getPlayerNameByName(arr){
@@ -65,8 +65,11 @@ function displayPlayerList(){
                 li.className = 'li-item'
                 li.setAttribute('flag', 'false')
 
+                
                 li.addEventListener('click', (e) => {
-                    pickPlayer(e)
+                    if(!editList){
+                        pickPlayer(e)
+                    }
                 })
 
                 li.addEventListener('mouseover', (e) => {
@@ -184,6 +187,8 @@ function editPlayers(){
 
             //remove from dom and from playerlist
             ul.removeChild(btn.parentElement)
+
+            popPlayerFromList(name)
         })
     })    
 }
@@ -218,6 +223,8 @@ function hideDeletePlayers(){
 
 //remove all players from pickedPlayer[] and unMark them
 function unMarkPlayerList(){
+     unMarkFlag = 1
+
     pickedPlayers.forEach((list,i) => {
       list.splice(0, list.length)
     })
@@ -264,7 +271,6 @@ function unDisplayLevel(e){
     let li = e.currentTarget
     let div = li.querySelector('.box')
     li.removeChild(div)
-    // btn1.removeChild(div)
 }
 
 
