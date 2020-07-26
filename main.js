@@ -122,12 +122,13 @@ function showAddPlayerMenu(){
 } 
 
 
+
 //add players to each level
 playerBtn.forEach(element => {
     element.addEventListener('click', () => {
         let inputField = element.previousElementSibling
 
-        if(inputField.className === "inputA"){
+        if(inputField.className === "inputA" && inputField.value !== ''){
             addPlayerToDB(inputField.value, 'A')
             console.log("A")
 
@@ -135,7 +136,7 @@ playerBtn.forEach(element => {
             displayAddedPlayer(dbDummyArray[dbDummyArray.length-1])
             inputField.value = ''
         }
-        if(inputField.className === "inputB"){
+        if(inputField.className === "inputB" && inputField.value !== ''){
             addPlayerToDB(inputField.value, 'B')
             console.log("B")
 
@@ -143,7 +144,7 @@ playerBtn.forEach(element => {
             displayAddedPlayer(dbDummyArray[dbDummyArray.length-1])
             inputField.value = ''
         }
-        if(inputField.className === "inputC"){
+        if(inputField.className === "inputC" && inputField.value !== ''){
             addPlayerToDB(inputField.value, 'C')
             console.log("C")
 
@@ -151,7 +152,7 @@ playerBtn.forEach(element => {
             displayAddedPlayer(dbDummyArray[dbDummyArray.length-1])
             inputField.value = ''
         }
-        if(inputField.className === "inputD"){
+        if(inputField.className === "inputD" && inputField.value !== ''){
             addPlayerToDB(inputField.value, 'D')
             console.log("D")
 
