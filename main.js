@@ -5,6 +5,7 @@ let playerBtn = document.querySelectorAll('.player-btn')
 let ul = document.querySelector('.ul-list')
 let shuffleBtnWrap = document.querySelector('.shuffle-btn')
 let edit = document.querySelector('.edit')
+let addPlayerBtn = document.querySelector('.add-player-btn')
 let copyBtn = document.querySelector('.copy')
 let editList = 0
 let flag = 0
@@ -21,7 +22,7 @@ function getPlayerNameByName(arr){
     let name = arr
     let blank = name[1].trim()    
 
-    if(arr[1] === "X" || arr[1] === "" || blank === "") {
+    if(arr[1] === "X" || arr[1] === "" || arr[1] === "XName" || blank === "") {
          name = arr[0]
     } else {
          name = arr[0] + ' ' + arr[1]
@@ -80,12 +81,45 @@ function displayPlayerList(){
                     unDisplayLevel(e)
                 })
 
-                li.innerHTML = `${obj.name} <button class=del-btn>X</button>`
+                li.innerHTML = `<p>${obj.name}</p> <button class=del-btn>X</button>`
                 ul.appendChild(li)
             })
 
         })
 }
+
+
+addPlayerBtn.addEventListener('click', () => {
+    showAddPlayerMenu()
+})
+
+//toggle btn to show/hide adding players to the list
+function showAddPlayerMenu(){
+    console.log("!")
+    let inpWrapper = document.querySelector('.input-wrapper')
+    let levelDesc = document.querySelector('.level-desc')
+
+    //desktop view
+    if(window.screen.width > 425){
+        if(inpWrapper.style.display === 'grid'){
+            inpWrapper.style.display = "none"
+            levelDesc.style.display = "none"
+        } else {
+            inpWrapper.style.display = "grid"
+            levelDesc.style.display = "flex"
+        }
+        
+    //mobile view
+    } else {
+        //move shuffle button down func on mobile view
+        if(inpWrapper.style.display === 'flex'){
+            inpWrapper.style.display = "none"
+        } else {
+            inpWrapper.style.display = "flex"
+        }
+    }
+    
+} 
 
 
 //add players to each level
@@ -180,10 +214,11 @@ function editPlayers(){
         btn.style.visibility = 'visible'
 
         btn.addEventListener('click', () => {
-            let name = btn.parentElement.textContent.split(' ')
+            let nameArr = btn.parentElement.textContent.split(' ')
+            let name = getPlayerNameByName(nameArr)
 
             //remove from db
-            removePlayerFromDb(name[0])
+            removePlayerFromDb(name)
 
             //remove from dom and from playerlist
             ul.removeChild(btn.parentElement)
@@ -240,7 +275,7 @@ function unMarkPlayerList(){
         item.style.color = "white"
         item.textContent = `${name}`
         item.setAttribute('flag', "false")
-        item.innerHTML = `${name} <button class=del-btn>X</button>`
+        item.innerHTML = `<p>${name}</p> <button class=del-btn>X</button>`
         item.lastChild.style.visibility = 'visible'  
     })
 }
@@ -304,18 +339,6 @@ function shufflePlayers(){
         console.log("Shuffle function")
     }
 
-    //check if its a computer or mobile screen
-    if(window.screen.width > 425){
-        shuffleBtnWrap.style.position = "absolute"
-        shuffleBtnWrap.style.width = "79%"
-        shuffleBtnWrap.style.bottom = "5%"
-        copyBtn.style.visibility = "visible"
-    } else {
-        shuffleBtnWrap.style.position = "absolute"
-        shuffleBtnWrap.style.width = "70%"
-        shuffleBtnWrap.style.bottom = "5%"
-        copyBtn.style.visibility = "visible"
-    }
 }
 
 
@@ -337,7 +360,6 @@ shuffleBtn.addEventListener('click', shuffle)
 function shuffle(){
     if(flag > 0){
         let teams = document.querySelector('.teams').childNodes
-        console.log(teams)
 
         for (let i = 0; i < 3; i++) {
             let element = document.querySelector(`.team${i+1}`)
@@ -393,13 +415,13 @@ function pickPlayer(e){
     let newName = fullObj[0].name
     
     if (listLi.getAttribute('flag') === "false") {
-        listLi.style.color = "green"
-        listLi.innerHTML = `<p>${newName} &nbsp; &#10003;</p>`
+        listLi.style.color = "#65FF33"
+        listLi.innerHTML = `<p>${newName}</p> &nbsp; &#10003;  `
         listLi.setAttribute('flag', "true") 
         pushPlayerToArrByLevel(newName, fullObj[0].level)
     } else {
         listLi.style.color = "white"
-        listLi.innerHTML = `<p>${newName} &nbsp;</p>`
+        listLi.innerHTML = `<p>${newName}</p> &nbsp;`
         popPlayerFromList(newName)
         listLi.setAttribute('flag', "false")
     }
@@ -466,6 +488,7 @@ function popPlayerFromList(name){
     }
 
 }
+
 
 
 // document.querySelector('.copy').addEventListener('click', () => {
