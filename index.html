@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -12,24 +13,48 @@
     <div class="container">
 
         <div class="right-list">
-            <ul class="ul-list">
-                  Player List <br><br>
-            </ul>
+        
+            <div class="list-wrapper">
+                <h4> Player List </h4>
 
+                <ul class="ul-list">
+                   
+                </ul>
+        
                 <br>
+        
+                <button class="edit">Edit List</button>
+            </div>
 
-            <button class="edit">Edit List</button>
         </div>
 
 
         <div class="wrapper">
+            <div>
+
             <div class="title">
                 <h1>Player Picker</h1>
                 
+                <div class="title-desc">
+                    <h3>בניית כוחות למשחקי כדורגל</h3>
+                    <h5 class="third-line">  Shuffle בוחרים את השחקנים שבאים לשחק באותו יום, מתוך
+                         רשימת השחקנים מצד שמאל ולוחצים על </h5>
+                    <h5> ניתן להוסיף שחקנים חדשים לרשימת השחקנים לפי דירוג השחקן עם כפתור הוסף שחקן </h5>
+                </div>
             </div>
 
 
+            <div class="add-player">
+                <button class="add-player-btn">Add Player</button>
+                <button class="btn">Shuffle</button>
+            </div>
+
+            <div class="level-desc">
+                 <span>A - Great , B - Good , C - Nice, D - Ok</span>
+            </div>
+
             <div class="input-wrapper">
+
                 <div class="sub-input">
                     <span class="level">A</span>
                     <input type="text" class="inputA" placeholder="Enter Name">
@@ -55,9 +80,6 @@
                 </div>
             </div>
 
-            <div class="shuffle-btn">
-            <button class="btn">Shuffle</button>
-            </div>
         
             <div class="teams">
                 <div class="team1"><h1 class="class-h1">Team 1</h1></div>
@@ -71,9 +93,9 @@
         </div>
 
     </div>
+    </div>
 
     <div class="footer">
-        <!-- <button class="test">Click</button> -->
     </div>
     
 <script src="main.js"></script>    
