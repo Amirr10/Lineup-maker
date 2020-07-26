@@ -4,8 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev": "nodemon index",
-    "start": "node index"
+    "start": "cd backend && nodemon index",
+    "dev": "nodemon index"
   },
   "repository": {
     "type": "git",
