@@ -13,6 +13,8 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const MONGODB_URI = `mongodb://heroku_8qwglhbh:SKKATERBOY1@ds019468.mlab.com:19468/heroku_8qwglhbh`
+
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGOOSE_URL, { useNewUrlParser: true })
         .then(() => console.log("Mongoose"));
 
