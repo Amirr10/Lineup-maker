@@ -7,13 +7,11 @@ const Player = require('./model/playersSchema')
 require('dotenv').config()
 const PORT = process.env.PORT || 5000
 
-// mongodb://<dbuser>:<dbpassword>@ds019468.mlab.com:19468/heroku_skr1878z
 const app = express();
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const MONGODB_URI = `mongodb://heroku_8qwglhbh:SKKATERBOY1@ds019468.mlab.com:19468/heroku_8qwglhbh`
 
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGOOSE_URL, { useNewUrlParser: true })
         .then(() => console.log("Mongoose"));
@@ -22,9 +20,9 @@ mongoose.connect(process.env.MONGODB_URI || process.env.MONGOOSE_URL, { useNewUr
 //return list of players from db
 app.get('/', (req, res) => {
     
-    // let p = Player.find( (err, doc) => {
-    //     res.json(doc)
-    // })
+    let p = Player.find( (err, doc) => {
+        res.json(doc)
+    })
 
     res.json();
 })
