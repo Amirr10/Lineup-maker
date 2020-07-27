@@ -31,11 +31,11 @@ app.post('/post', (req, res) => {
     console.log(req.body, "From post")
     let newPlayer = new Player(req.body)
 
-    newPlayer.save( (err) => {
-        if(err){
-          console.log("Error")
-        }
-    })
+    // newPlayer.save( (err) => {
+    //     if(err){
+    //       console.log("Error")
+    //     }
+    // })
     res.json();
 })
 
