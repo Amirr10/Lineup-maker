@@ -99,6 +99,7 @@ function showAddPlayerMenu(){
     let inpWrapper = document.querySelector('.input-wrapper')
     let levelDesc = document.querySelector('.level-desc')
 
+
     //desktop view
     if(window.screen.width > 425){
         if(inpWrapper.style.display === 'grid'){
@@ -359,6 +360,12 @@ shuffleBtn.addEventListener('click', shuffle)
 
 //display teams in order and call shufflePlayers func
 function shuffle(){
+
+    let inputWrapper = document.querySelector('.input-wrapper')
+    let levelDesc = document.querySelector('.level-desc')
+    levelDesc.style.display = "none"
+    inputWrapper.style.display = "none"
+    
     if(flag > 0){
         let teams = document.querySelector('.teams').childNodes
 
