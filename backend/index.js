@@ -20,9 +20,11 @@ mongoose.connect(process.env.MONGODB_URI || process.env.MONGOOSE_URL, { useNewUr
 //return list of players from db
 app.get('/', (req, res) => {
     
-    let p = Player.find( (err, doc) => {
-        res.json(doc)
-    })
+    // let p = Player.find( (err, doc) => {
+    //     res.json(doc)
+    // })
+
+    res.json();
 })
 
 
@@ -31,11 +33,11 @@ app.post('/post', (req, res) => {
     console.log(req.body, "From post")
     let newPlayer = new Player(req.body)
 
-    // newPlayer.save( (err) => {
-    //     if(err){
-    //       console.log("Error")
-    //     }
-    // })
+    newPlayer.save( (err) => {
+        if(err){
+          console.log("Error")
+        }
+    })
     res.json();
 })
 
