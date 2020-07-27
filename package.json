@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "cd backend && npm run start",
+    "start": "cd backend && npm run dev",
     "dev": "nodemon index"
   },
   "repository": {

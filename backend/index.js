@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const cors = require('cors')
 
+const PORT = process.env.PORT || 5000
 const Player = require('./model/playersSchema')
 require('dotenv').config()
-const PORT = process.env.PORT || 5000
 
 const app = express();
 app.use(cors())
@@ -24,7 +24,6 @@ app.get('/', (req, res) => {
         res.json(doc)
     })
 
-    res.json();
 })
 
 
