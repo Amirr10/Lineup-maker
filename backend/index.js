@@ -7,7 +7,7 @@ const Player = require('./model/playersSchema')
 require('dotenv').config()
 const PORT = process.env.PORT || 5000
 
-
+// mongodb://<dbuser>:<dbpassword>@ds019468.mlab.com:19468/heroku_skr1878z
 const app = express();
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
