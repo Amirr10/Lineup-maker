@@ -16,10 +16,6 @@ let pickedPlayers = [
     [], [], [], [] //Level A, B, C, D
 ]
 
-fetch('https://test-app-amirr.herokuapp.com/')
-    .then(res => res.json())
-    .then(data => console.log(data))
-
 
 //return player full name
 function getPlayerNameByName(arr){
