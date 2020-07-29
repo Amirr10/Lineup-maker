@@ -117,8 +117,11 @@ function showAddPlayerMenu(){
         //move shuffle button down func on mobile view
         if(inpWrapper.style.display === 'flex'){
             inpWrapper.style.display = "none"
+            levelDesc.style.display = "none"
         } else {
             inpWrapper.style.display = "flex"
+            levelDesc.style.display = "flex"
+
         }
     }
     

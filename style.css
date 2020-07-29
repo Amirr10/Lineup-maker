@@ -323,6 +323,17 @@ input {
         padding: 0;
     }
 
+    .container {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        min-height: 90vh;
+        width: 100%;
+        height: auto;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 550;
+    }
+
     .wrapper {
         position: relative;
         min-height: 100%;
@@ -337,7 +348,7 @@ input {
 
     .right-list {
         width: 35%;
-        height: 100%;
+        min-height: 90vh;
         text-align: center;
         color: white;
         background-color: #114b5f;
@@ -366,12 +377,19 @@ input {
         line-height: 1.6;
     }
 
-    .third-line {
+    .title-desc h5 {
+        width: 100%;
+        text-align: center;
         font-size: 11.2px;
+        margin-top: 6px;
     }
 
+    /* .third-line {
+        font-size: 11.2px;
+    } */
+
     .input-wrapper {
-        display: flex;
+        display: none;
         justify-content: center;
         align-items: center;
         flex-direction: column;
@@ -379,6 +397,12 @@ input {
         height: 20%;
         width: 100%;
         margin-top: 10px;
+    }
+
+    .list-wrapper h4 {
+        font-family: 'Balsamiq Sans', cursive;
+        margin-top: 17px;
+        font-size: 12px;
     }
 
     .level {
@@ -412,7 +436,7 @@ input {
 
     .add-player-btn {
         width: 30%;
-        height: 5vh;
+        height: 4.7vh;
         border-radius: 50px;
         border: none;
         outline: none;
@@ -421,10 +445,20 @@ input {
         color: white;
     }
 
-    .btn {
+    .level-desc {
+        display: none;
+        width: 90%;
+        margin: auto;
+        justify-content: center;
+        font-size: 12px;
+        margin-top: 20px;
+        font-family: 'Rubik', sans-serif;
+        color: white;
+    }
 
+    .btn {
     width: 30%;
-    height: 5vh;
+    height: 4.7vh;
     border-radius: 50px;
     margin-left: 10px;
     border: none;
@@ -436,7 +470,7 @@ input {
 
     .edit {
         width: 70px;
-        height: 4vh;
+        height: 3.8vh;
         border: none;
         border-radius: 5px;
         color: white;
@@ -465,7 +499,7 @@ input {
 
     .li-item {
         width: 35%;
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .player-row {
