@@ -56,7 +56,7 @@ function displayPlayerList(){
     //fetch data from mongodb
     // https://lineup-picker.herokuapp.com/
     // http://localhost:5000
-    fetch('https://lineup-picker.herokuapp.com/')
+    fetch('https://test-app-amirr.herokuapp.com/')
         .then(res => res.json())
         .then(data => {
             dbDummyArray = data
