@@ -54,14 +54,10 @@ window.addEventListener('DOMContentLoaded', () => {
 function displayPlayerList(){
 
     //fetch data from mongodb
-    // https://lineup-picker.herokuapp.com/
-    // http://localhost:5000
     fetch('https://lineup-picker.herokuapp.com/')
         .then(res => res.json())
         .then(data => {
             dbDummyArray = data
-            console.log(data)
-
             dbDummyArray.forEach((obj) => {
 
                 let li = document.createElement('li')
@@ -100,7 +96,6 @@ function showAddPlayerMenu(){
     console.log("!")
     let inpWrapper = document.querySelector('.input-wrapper')
     let levelDesc = document.querySelector('.level-desc')
-
 
     //desktop view
     if(window.screen.width > 425){
@@ -172,7 +167,7 @@ playerBtn.forEach(element => {
 
 //send post request with name and level to db, and save user in db
 function addPlayerToDB(value, level){
-    // https://lineup-picker.herokuapp.com/post
+
     fetch('https://lineup-picker.herokuapp.com/post', {
                 method: 'POST',
                 headers: {
@@ -368,8 +363,12 @@ function shuffle(){
 
     let inputWrapper = document.querySelector('.input-wrapper')
     let levelDesc = document.querySelector('.level-desc')
+    let copyWrapper = document.querySelector('.copy-wrap')
+
     levelDesc.style.display = "none"
     inputWrapper.style.display = "none"
+    copyWrapper.style.display = "flex"
+
     
     if(flag > 0){
         let teams = document.querySelector('.teams').childNodes
@@ -503,14 +502,26 @@ function popPlayerFromList(name){
 }
 
 
+//copy list of players to clipboard 
+document.querySelector('.copy').addEventListener('click', () => {
+    let team1, team2, team3
+    let text = document.querySelector('.teams').children
+    let copyWrapper = document.querySelector('.copy-wrap')
 
-// document.querySelector('.copy').addEventListener('click', () => {
-//     let text = document.querySelector('.team1').querySelectorAll('.player-row')
-//     let a
-//     text.forEach(name => {
-//         a += name.textContent + ' '
-//         console.log(a)
-//     })
-    
-//     window.navigator.clipboard.writeText(a)
-// })
+    text[0].childNodes.forEach(name => team1 +=  ' ' + name.textContent)
+    text[1].childNodes.forEach(name => team2 +=  ' ' + name.textContent)
+    text[2].childNodes.forEach(name => team3 +=  ' ' + name.textContent)
+
+    let reg = /[^Team 1 2 3 undefined]+/g
+    team1 = team1.match(reg)
+    team2 = team2.match(reg)
+    team3 = team3.match(reg)
+
+    let div = document.createElement('div')
+    div.innerHTML = `<p>קבוצה 1 - ${team1}<p/> \n\n <p>קבוצה 2 - ${team2}</p> \n\n <p> קבוצה 3 - ${team3}</p>`
+
+    //copy to clipboard
+    window.navigator.clipboard.writeText(div.innerText)
+})
+
+
