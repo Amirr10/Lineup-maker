@@ -240,21 +240,6 @@ function hideDeletePlayers(){
     delBtn.forEach(btn => {
         btn.innerHTML = ''
     })    
-
-    let li = document.querySelectorAll('.li-item')
-
-    //fetch data from mongodb
-     fetch('https://lineup-picker.herokuapp.com/')
-     .then(res => res.json())
-     .then(data => {
-         dbDummyArray = data
-         console.log(data)
-
-         dbDummyArray.forEach((obj,i) => {
-             li[i].className = 'li-item'
-             li[i].setAttribute('flag', 'false')
-         })
-     })
 }
 
 
