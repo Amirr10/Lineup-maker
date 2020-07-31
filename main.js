@@ -244,7 +244,7 @@ function hideDeletePlayers(){
     let li = document.querySelectorAll('.li-item')
 
     //fetch data from mongodb
-     fetch('http://localhost:5000/')
+     fetch('https://lineup-picker.herokuapp.com')
      .then(res => res.json())
      .then(data => {
          dbDummyArray = data
