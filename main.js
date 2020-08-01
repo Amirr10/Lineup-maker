@@ -93,7 +93,7 @@ addPlayerBtn.addEventListener('click', () => {
 
 //toggle btn to show/hide adding players to the list
 function showAddPlayerMenu(){
-    console.log("!")
+
     let inpWrapper = document.querySelector('.input-wrapper')
     let levelDesc = document.querySelector('.level-desc')
 
@@ -131,7 +131,6 @@ playerBtn.forEach(element => {
 
         if(inputField.className === "inputA" && inputField.value !== ''){
             addPlayerToDB(inputField.value, 'A')
-            console.log("A")
 
             dbDummyArray.push({name: inputField.value, level:'A'})
             displayAddedPlayer(dbDummyArray[dbDummyArray.length-1])
@@ -139,7 +138,6 @@ playerBtn.forEach(element => {
         }
         if(inputField.className === "inputB" && inputField.value !== ''){
             addPlayerToDB(inputField.value, 'B')
-            console.log("B")
 
             dbDummyArray.push({name: inputField.value, level:'B'})
             displayAddedPlayer(dbDummyArray[dbDummyArray.length-1])
@@ -147,7 +145,6 @@ playerBtn.forEach(element => {
         }
         if(inputField.className === "inputC" && inputField.value !== ''){
             addPlayerToDB(inputField.value, 'C')
-            console.log("C")
 
             dbDummyArray.push({name: inputField.value, level:'C'})
             displayAddedPlayer(dbDummyArray[dbDummyArray.length-1])
@@ -155,7 +152,6 @@ playerBtn.forEach(element => {
         }
         if(inputField.className === "inputD" && inputField.value !== ''){
             addPlayerToDB(inputField.value, 'D')
-            console.log("D")
 
             dbDummyArray.push({name: inputField.value, level:'D'})
             displayAddedPlayer(dbDummyArray[dbDummyArray.length-1])
@@ -240,6 +236,9 @@ function hideDeletePlayers(){
     delBtn.forEach(btn => {
         btn.innerHTML = ''
     })    
+
+    // let copyWrapper = document.querySelector('.copy-wrap')
+    // copyWrapper.style.display = 'none'
 }
 
 
@@ -290,9 +289,9 @@ function displayLevel(e){
 
 //remove display box when mouse leave player name
 function unDisplayLevel(e){
-    let li = e.currentTarget
-    let div = li.querySelector('.box')
-    li.removeChild(div)
+        let li = e.currentTarget
+        let div = li.querySelector('.box')
+        li.removeChild(div)    
 }
 
 
@@ -323,7 +322,7 @@ function shufflePlayers(){
 
             total++
         }
-        console.log("Shuffle function")
+
     }
 
 }
@@ -352,7 +351,6 @@ function shuffle(){
 
     levelDesc.style.display = "none"
     inputWrapper.style.display = "none"
-    copyWrapper.style.display = "flex"
 
     
     if(flag > 0){
@@ -364,6 +362,18 @@ function shuffle(){
         }
 
     }
+
+  
+        //check if all no player was picked, if pickedPlayers arr is not empty
+        //show copy button
+        let checkEmptyArrays = pickedPlayers.every(arr => arr.length === 0)
+        if(checkEmptyArrays){
+            copyWrapper.style.display = "none"
+        } else {
+            copyWrapper.style.display = "flex"
+        }
+  
+
     shufflePlayers()
     flag++
 }
@@ -388,7 +398,6 @@ function displayAddedPlayer(obj) {
 function pickPlayer(e){
 
     let listLi = e.currentTarget
-    console.log(listLi.firstChild.innerHTML)
     
     let itemName = listLi.textContent
     let regex = /(?!XName)\S+/gi
@@ -396,7 +405,6 @@ function pickPlayer(e){
     let name
 
     if (cutReg.length > 1) {
-        console.log(cutReg.length)
         if (cutReg[1] === '-' || cutReg[1] === 'Name' || cutReg[1] === "✓" || cutReg[1] === "✓Name") {
             name = cutReg[0]
         } else {
@@ -433,21 +441,15 @@ function pushPlayerToArrByLevel(name, level){
         if(level){
             if (level === 'A') {
                 pickedPlayers[0].push(name)
-                console.log(pickedPlayers[0], level + " - Picked List")
             }
             if (level === 'B') {
                 pickedPlayers[1].push(name)
-                console.log(pickedPlayers[1], level + " - Picked List")
-
             }
             if (level === 'C') {
                 pickedPlayers[2].push(name)
-                console.log(pickedPlayers[2], level +" - Picked List")
-
             }
             if (level === 'D') {
                 pickedPlayers[3].push(name)
-                console.log(pickedPlayers[3], level +" - Picked List")
             }
         }
 
@@ -467,20 +469,16 @@ function popPlayerFromList(name){
     if(level){
         if (level === 'A') {
             pickedPlayers[0] = pickedPlayers[0].filter(player => player !== name)
-            console.log(pickedPlayers,"Player Popped")
         }
         if (level === 'B') {
             pickedPlayers[1] = pickedPlayers[1].filter(player => player !== name)
-            console.log(pickedPlayers,"Player Popped")
 
         }
         if (level === 'C') {
             pickedPlayers[2] = pickedPlayers[2].filter(player => player !== name)
-            console.log(pickedPlayers,"Player Popped")
         }
         if (level === 'D') {
             pickedPlayers[3] = pickedPlayers[3].filter(player => player !== name)
-            console.log(pickedPlayers,"Player Popped")
         }
     }
 
