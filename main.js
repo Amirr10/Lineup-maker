@@ -486,7 +486,8 @@ function popPlayerFromList(name){
 
 
 //copy list of players to clipboard 
-document.querySelector('.copy').addEventListener('click', () => {
+document.querySelector('.copy').addEventListener('click', () => {    
+
     let team1, team2, team3
     let text = document.querySelector('.teams').children
     let copyWrapper = document.querySelector('.copy-wrap')
@@ -503,8 +504,43 @@ document.querySelector('.copy').addEventListener('click', () => {
     let div = document.createElement('div')
     div.innerHTML = `<p>קבוצה 1 - ${team1}<p/> \n\n <p>קבוצה 2 - ${team2}</p> \n\n <p> קבוצה 3 - ${team3}</p>`
 
-    //copy to clipboard
-    window.navigator.clipboard.writeText(div.innerText)
+    // window.navigator.clipboard.writeText(div.innerText)
+
+
+    let wrapper = document.querySelector('.wrapper')
+    let input = document.createElement('textarea')
+    wrapper.appendChild(input)
+    input.textContent = div.innerText
+
+
+    let isiOSDevice = navigator.userAgent.match(/ipad|iphone/i);
+
+	if (isiOSDevice) {
+	  
+		let editable = input.contentEditable;
+		let readOnly = input.readOnly;
+
+		input.contentEditable = true;
+		input.readOnly = false;
+
+		let range = document.createRange();
+		range.selectNodeContents(input);
+
+		let selection = window.getSelection();
+		selection.removeAllRanges();
+		selection.addRange(range);
+
+		input.setSelectionRange(0, 999999);
+		input.contentEditable = editable;
+		input.readOnly = readOnly;
+
+	} else {
+	 	input.select();
+	}
+
+    document.execCommand('copy');
+
+    input.remove()
 })
 
 
