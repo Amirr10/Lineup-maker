@@ -305,7 +305,6 @@ input {
     text-align: center;
     border-radius: 6px;
     padding: 8px 0;
-    
 }
 
 .copy {
@@ -563,6 +562,18 @@ input {
         font-family: 'Roboto', sans-serif;
         font-size: 13px;
         font-weight: 700;
+    }
+
+    .copy-popup {
+        display: block;
+        margin: auto;
+        margin-top: 6px;
+        width: 25%;
+        background-color: #DCDCDC;
+        color: rgb(88, 87, 90);
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px 0;
     }
 
   }
