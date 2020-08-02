@@ -45,10 +45,10 @@ function getPlayerObjectByName(name){
 
 //sorting player list by level
 function sortByLevel(a, b) {
-    if (a.level > b.level) {
+    if (a.name > b.name) {
         return 1;
     }
-    if (a.level < b.level) {
+    if (a.name < b.name) {
         return -1;
     }
     return 0;
