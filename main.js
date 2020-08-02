@@ -43,6 +43,16 @@ function getPlayerObjectByName(name){
     return obj[0]
 }
 
+//sorting player list by level
+function sortByLevel(a, b) {
+    if (a.level > b.level) {
+        return 1;
+    }
+    if (a.level < b.level) {
+        return -1;
+    }
+    return 0;
+}
 
 //load list on loading
 window.addEventListener('DOMContentLoaded', () => {
@@ -57,7 +67,11 @@ function displayPlayerList(){
     fetch('https://lineup-picker.herokuapp.com/')
         .then(res => res.json())
         .then(data => {
-            dbDummyArray = data
+            
+            dbDummyArray = data.sort(sortByLevel)
+
+            console.log(dbDummyArray,'dbdummyarrayyyy')
+            
             dbDummyArray.forEach((obj) => {
 
                 let li = document.createElement('li')
@@ -370,7 +384,7 @@ function shuffle(){
         if(checkEmptyArrays){
             copyWrapper.style.display = "none"
         } else {
-            copyWrapper.style.display = "flex"
+            copyWrapper.style.display = "block"
         }
   
 
@@ -485,34 +499,32 @@ function popPlayerFromList(name){
 }
 
 
-//copy list of players to clipboard 
-document.querySelector('.copy').addEventListener('click', () => {    
 
-    let team1, team2, team3
-    let text = document.querySelector('.teams').children
+//call copy function
+let copyToClip = document.querySelector('.copy')
+copyToClip.addEventListener('click', () => {
+    copyTeamsToClipboard()
+})
+
+
+//copy all the teams inorder for displaying them in whatsapp
+function copyTeamsToClipboard(){
+    
+    let div = setTeamsIntoDiv()
+    
     let copyWrapper = document.querySelector('.copy-wrap')
-
-    text[0].childNodes.forEach(name => team1 +=  ' ' + name.textContent)
-    text[1].childNodes.forEach(name => team2 +=  ' ' + name.textContent)
-    text[2].childNodes.forEach(name => team3 +=  ' ' + name.textContent)
-
-    let reg = /[^Team 1 2 3 undefined]+/g
-    team1 = team1.match(reg)
-    team2 = team2.match(reg)
-    team3 = team3.match(reg)
-
-    let div = document.createElement('div')
-    div.innerHTML = `<p>קבוצה 1 - ${team1}<p/> \n\n <p>קבוצה 2 - ${team2}</p> \n\n <p> קבוצה 3 - ${team3}</p>`
-
-    // window.navigator.clipboard.writeText(div.innerText)
-
-
     let wrapper = document.querySelector('.wrapper')
     let input = document.createElement('textarea')
+    let copyMsg = document.createElement('span')
+
+    copyMsg.className = 'copy-popup'
+    copyMsg.innerHTML = 'הועתק'
+
     wrapper.appendChild(input)
     input.textContent = div.innerText
 
 
+    //check if its ios device
     let isiOSDevice = navigator.userAgent.match(/ipad|iphone/i);
 
 	if (isiOSDevice) {
@@ -541,6 +553,37 @@ document.querySelector('.copy').addEventListener('click', () => {
     document.execCommand('copy');
 
     input.remove()
-})
+
+
+    //display popup copy msg for 1 second
+    copyWrapper.append(copyMsg)
+    setTimeout(() => {
+        copyMsg.remove()
+    }, 1000);
+}
+
+
+//organize teams into div before copy 
+function setTeamsIntoDiv(){
+    
+    let team1, team2, team3
+    let text = document.querySelector('.teams').children
+
+    text[0].childNodes.forEach(name => team1 +=  ' ' + name.textContent)
+    text[1].childNodes.forEach(name => team2 +=  ' ' + name.textContent)
+    text[2].childNodes.forEach(name => team3 +=  ' ' + name.textContent)
+
+    let reg = /[^Team 1 2 3 undefined]+/g
+    team1 = team1.match(reg)
+    team2 = team2.match(reg)
+    team3 = team3.match(reg)
+
+    let div = document.createElement('div')
+    div.innerHTML = `<p>קבוצה 1 - ${team1}<p/> \n\n <p>קבוצה 2 - ${team2}</p> \n\n <p> קבוצה 3 - ${team3}</p>`
+    
+    return div
+}
+
+
 
 

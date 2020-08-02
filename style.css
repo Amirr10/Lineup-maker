@@ -288,13 +288,24 @@ input {
 }
 
 .copy-wrap {
-    
-    /* position: absolute; */
     display: none;
-    justify-content: center;
+    text-align: center;
     width: 100%;
     bottom: 4px;
     right: 0;
+}
+
+.copy-popup {
+    display: block;
+    margin: auto;
+    margin-top: 6px;
+    width: 10%;
+    background-color: #DCDCDC;
+    color: rgb(88, 87, 90);
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    
 }
 
 .copy {
@@ -323,6 +334,15 @@ input {
 .copy:hover {
 	background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
 	background-color:#019ad2;
+}
+
+.copied-msg {
+    height: 6vh;
+    width: 100px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    background-color: rgb(212, 202, 202);
 }
 
 .footer {
