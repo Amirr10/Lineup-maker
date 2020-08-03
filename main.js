@@ -13,7 +13,8 @@ let unMarkFlag = 0
 
 let dbDummyArray
 let pickedPlayers = [
-    [], [], [], [] //Level A, B, C, D
+    [], [], [], [], [], []          //Level A, B, C, D
+                    //Level A+, A, B+, B, C+, C
 ]
 
 
@@ -143,10 +144,26 @@ playerBtn.forEach(element => {
     element.addEventListener('click', () => {
         let inputField = element.previousElementSibling
 
+        if(inputField.className === "inputA+" && inputField.value !== ''){
+            addPlayerToDB(inputField.value, 'A+')
+
+            dbDummyArray.push({name: inputField.value, level:'A+'})
+            displayAddedPlayer(dbDummyArray[dbDummyArray.length-1])
+            inputField.value = ''
+        }
         if(inputField.className === "inputA" && inputField.value !== ''){
             addPlayerToDB(inputField.value, 'A')
 
             dbDummyArray.push({name: inputField.value, level:'A'})
+            displayAddedPlayer(dbDummyArray[dbDummyArray.length-1])
+            inputField.value = ''
+        }
+
+
+        if(inputField.className === "inputB+" && inputField.value !== ''){
+            addPlayerToDB(inputField.value, 'B+')
+
+            dbDummyArray.push({name: inputField.value, level:'B+'})
             displayAddedPlayer(dbDummyArray[dbDummyArray.length-1])
             inputField.value = ''
         }
@@ -157,6 +174,15 @@ playerBtn.forEach(element => {
             displayAddedPlayer(dbDummyArray[dbDummyArray.length-1])
             inputField.value = ''
         }
+
+        
+        if(inputField.className === "inputC+" && inputField.value !== ''){
+            addPlayerToDB(inputField.value, 'C+')
+
+            dbDummyArray.push({name: inputField.value, level:'C+'})
+            displayAddedPlayer(dbDummyArray[dbDummyArray.length-1])
+            inputField.value = ''
+        }
         if(inputField.className === "inputC" && inputField.value !== ''){
             addPlayerToDB(inputField.value, 'C')
 
@@ -164,13 +190,7 @@ playerBtn.forEach(element => {
             displayAddedPlayer(dbDummyArray[dbDummyArray.length-1])
             inputField.value = ''
         }
-        if(inputField.className === "inputD" && inputField.value !== ''){
-            addPlayerToDB(inputField.value, 'D')
-
-            dbDummyArray.push({name: inputField.value, level:'D'})
-            displayAddedPlayer(dbDummyArray[dbDummyArray.length-1])
-            inputField.value = ''
-        }
+        
     })
 });
 
@@ -453,17 +473,23 @@ function pickPlayer(e){
 function pushPlayerToArrByLevel(name, level){
         
         if(level){
-            if (level === 'A') {
+            if (level === 'A+') {
                 pickedPlayers[0].push(name)
             }
-            if (level === 'B') {
+            if (level === 'A') {
                 pickedPlayers[1].push(name)
             }
-            if (level === 'C') {
+            if (level === 'B+') {
                 pickedPlayers[2].push(name)
             }
-            if (level === 'D') {
+            if (level === 'B') {
                 pickedPlayers[3].push(name)
+            }
+            if (level === 'C+') {
+                pickedPlayers[4].push(name)
+            }
+            if (level === 'C') {
+                pickedPlayers[5].push(name)
             }
         }
 
@@ -481,19 +507,25 @@ function popPlayerFromList(name){
 
     //filter the array with the level of the player from pickedPlayers array
     if(level){
-        if (level === 'A') {
+        if (level === 'A+') {
             pickedPlayers[0] = pickedPlayers[0].filter(player => player !== name)
         }
-        if (level === 'B') {
+        if (level === 'A') {
             pickedPlayers[1] = pickedPlayers[1].filter(player => player !== name)
-
         }
-        if (level === 'C') {
+        if (level === 'B+') {
             pickedPlayers[2] = pickedPlayers[2].filter(player => player !== name)
         }
-        if (level === 'D') {
+        if (level === 'B') {
             pickedPlayers[3] = pickedPlayers[3].filter(player => player !== name)
         }
+        if (level === 'C+') {
+            pickedPlayers[4] = pickedPlayers[4].filter(player => player !== name)
+        }
+        if (level === 'C') {
+            pickedPlayers[5] = pickedPlayers[5].filter(player => player !== name)
+        }
+        
     }
 
 }
@@ -587,3 +619,45 @@ function setTeamsIntoDiv(){
 
 
 
+let showLevels = document.querySelector('.show-levels-btn')
+let modalBg = document.querySelector('.modal-bg')
+let modal = document.querySelector('.modal')
+
+showLevels.addEventListener('click', () => {
+    modalBg.classList.toggle('bg-active')
+
+    modal.innerHTML = `<span class="exit-modal">X</span>
+                        <div class="grid-modal"></div>`
+    
+    let gridModal = document.querySelector('.grid-modal')
+
+    fetch('https://lineup-picker.herokuapp.com/')
+        .then(res => res.json())
+        .then(data => {
+            
+            dbDummyArray = data.sort(sortByLevel)
+
+            console.log(dbDummyArray,'dbdummyarrayyyy')
+            
+            dbDummyArray.forEach((obj) => {
+
+                let li = document.createElement('li')
+                li.className = 'li-item'
+
+                li.innerHTML = `<p class="li-modal">${obj.name} ${obj.level}</p> `
+                gridModal.appendChild(li)
+            })
+
+            let exitModal = document.querySelector('.exit-modal')
+            exitModal.addEventListener('click', () => {
+                modalBg.classList.remove('bg-active')
+            })
+        })
+})
+
+
+
+//display all players name and level in the middle of the screen
+function displayModal(){
+
+}

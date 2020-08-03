@@ -197,7 +197,7 @@ html, body {
     transform: scale(1.1,1.1);
 }
 
-.show-levels {
+.show-levels-btn {
         width: 70px;
         height: 5vh;
         border: none;
@@ -210,7 +210,7 @@ html, body {
         margin-left: 5%;
 }
 
-.show-levels:hover {
+.show-levels-btn:hover {
     transform: scale(1.1,1.1);
 }
 
@@ -367,7 +367,54 @@ input {
     background-color: #14213d;
 }
 
+.modal-bg {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.5);
+    visibility: hidden;
+    opacity: 0;
+}
 
+.bg-active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-family: 'Rubik', sans-serif ;
+    width: 50%;
+    /* height: 50%; */
+    background-color: white;
+    border-radius: 3px;
+}
+
+.li-modal {
+    text-align: center;
+    margin-top: 4px;
+}
+
+.grid-modal {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+
+.exit-modal {
+    display: block;
+    width: 100%;
+    margin: 10px;
+    font-size: 25px;
+    cursor: pointer;
+}
 
 
 
@@ -539,6 +586,20 @@ input {
         background: #1694be;
         transition: 0.2s ease-in;
         outline: none;
+}
+
+.show-levels-btn {
+    width: 70px;
+    height: 3.8vh;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background: #1694be;
+    transition: 0.2s ease-in;
+    font-size: 10px;
+    outline: none;
+    margin-bottom: 5%;
+    margin-left: 5%;
 }
 
     .shuffle-btn{

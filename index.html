@@ -25,10 +25,10 @@
 
                 <br>
         
-                <!-- <div style="display: flex; justify-content: center;"> -->
-                <button class="edit">Edit List</button>
-                <!-- <button class="show-levels">Show Levels</button> -->
-                <!-- </div> -->
+                <div style="display: flex; justify-content: center;">
+                    <button class="edit">Edit List</button>
+                    <button class="show-levels-btn">Show Levels</button>
+                </div>
 
             </div>
 
@@ -56,14 +56,26 @@
             </div>
 
             <div class="level-desc">
-                 <span>A - טוב מאוד , B - טוב , C - סבבה , D - בסדר</span>
+                 <span>דירוג שחקנים</span>
             </div>
 
             <div class="input-wrapper">
 
                 <div class="sub-input">
+                    <span class="level">A+</span>
+                    <input type="text" class="inputA+" placeholder="Enter Name">
+                    <button class="player-btn">Add</button>
+                </div>
+
+                <div class="sub-input">
                     <span class="level">A</span>
                     <input type="text" class="inputA" placeholder="Enter Name">
+                    <button class="player-btn">Add</button>
+                </div>
+
+                <div class="sub-input">
+                    <span class="level">B+</span>
+                    <input type="text" class="inputB+" placeholder="Enter Name">
                     <button class="player-btn">Add</button>
                 </div>
 
@@ -74,16 +86,17 @@
                 </div>
 
                 <div class="sub-input">
+                    <span class="level">C+</span>
+                    <input type="text" class="inputC+" placeholder="Enter Name">
+                    <button class="player-btn">Add</button>
+                </div>
+
+                <div class="sub-input">
                     <span class="level">C</span>
                     <input type="text" class="inputC" placeholder="Enter Name">
                     <button class="player-btn">Add</button>
                 </div>
 
-                <div class="sub-input">
-                    <span class="level">D</span>
-                    <input type="text" class="inputD" placeholder="Enter Name">
-                    <button class="player-btn">Add</button>
-                </div>
             </div>
 
         
@@ -102,6 +115,12 @@
     </div>
 
     <div class="footer">
+    </div>
+
+    <div class="modal-bg">
+        <div class="modal">
+            <span class="exit-modal">X</span>
+        </div>
     </div>
     
 <script src="main.js"></script>    
