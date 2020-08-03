@@ -197,6 +197,23 @@ html, body {
     transform: scale(1.1,1.1);
 }
 
+.show-levels {
+        width: 70px;
+        height: 5vh;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background: #1694be;
+        transition: 0.2s ease-in;
+        outline: none;
+        margin-bottom: 5%;
+        margin-left: 5%;
+}
+
+.show-levels:hover {
+    transform: scale(1.1,1.1);
+}
+
 .del-btn {
     width: 30px;
     border: none;
